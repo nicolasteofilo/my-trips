@@ -3,7 +3,7 @@ import * as S from './styles'
 
 import { CloseOutline } from '@styled-icons/evaicons-outline'
 
-const AboutTemplate = () => {
+const PageTemplate = () => {
   return (
     <S.Content>
       <LinkWrapper href="/">
@@ -18,4 +18,4 @@ const AboutTemplate = () => {
   )
 }
 
-export default AboutTemplate
+export { PageTemplate }
