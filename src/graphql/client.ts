@@ -8,6 +8,4 @@ const client = new GraphQLClient(endpoint, {
   }
 })
 
-console.log(process.env.GRAPHQL_HOST, process.env.GRAPHCMS_API_TOKEN)
-
 export { client }
