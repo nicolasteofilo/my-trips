@@ -1,4 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import * as S from './styles'
 
 type place = {
   id: string
@@ -15,7 +18,8 @@ export type MapProps = {
 }
 
 const Map = ({ places }: MapProps) => {
-  console.log(places)
+  const router = useRouter()
+
   return (
     <MapContainer
       center={[0, 0]}
@@ -37,11 +41,12 @@ const Map = ({ places }: MapProps) => {
             key={`place-${id}`}
             position={[latitude, longitude]}
             title={name}
-          >
-            <Popup>
-              <a href={`/places/${slug}`}>{name}</a>
-            </Popup>
-          </Marker>
+            eventHandlers={{
+              click: () => {
+                router.push(`/places/${slug}`)
+              }
+            }}
+          ></Marker>
         )
       })}
     </MapContainer>
