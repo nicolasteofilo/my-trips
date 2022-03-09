@@ -1,6 +1,8 @@
 import LinkWrapper from 'components/LinkWrapper'
 import { CloseOutline } from '@styled-icons/evaicons-outline'
 import * as S from './styles'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 export type ImageProps = {
   url: string
@@ -20,6 +22,12 @@ export interface PlacesTemplateProps {
 }
 
 export default function PlacesTemplate({ place }: PlacesTemplateProps) {
+  const router = useRouter()
+
+  if (router?.isFallback) {
+    return <p>Loading...</p>
+  }
+
   return (
     <>
       <LinkWrapper href="/">
@@ -35,7 +43,16 @@ export default function PlacesTemplate({ place }: PlacesTemplateProps) {
 
           <S.Gallery>
             {place.gallery.map((image, i) => {
-              return <img key={i} src={image.url} alt={place.name} />
+              return (
+                <Image
+                  key={i}
+                  src={image.url}
+                  alt={place.name}
+                  width={1000}
+                  height={600}
+                  quality={75}
+                />
+              )
             })}
           </S.Gallery>
         </S.Container>
