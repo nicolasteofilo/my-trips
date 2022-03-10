@@ -8,7 +8,6 @@ const Map = dynamic(() => import('../../components/Map'), {
 })
 
 export function HomeTemplate({ places }: MapProps) {
-  console.log(places)
   return (
     <>
       <LinkWrapper href="/about">

@@ -5,8 +5,11 @@ import { GET_PLACES } from 'graphql/queries'
 import { GetPlacesQuery } from 'graphql/generated/graphql'
 
 export default function Home({ places }: MapProps) {
-  console.log(places)
-  return <HomeTemplate places={places} />
+  return (
+    <>
+      <HomeTemplate places={places} />
+    </>
+  )
 }
 
 export const getStaticProps = async () => {
