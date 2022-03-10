@@ -1,3 +1,5 @@
+import NextNProgress from 'nextjs-progressbar'
+
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
@@ -16,6 +18,13 @@ export default function App({ Component, pageProps }: AppProps) {
           content="A simple project to show my favorites spots in the word"
         />
       </Head>
+      <NextNProgress
+        color="#FFF"
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={3}
+        showOnShallow={true}
+      />
       <GlobalStyles />
       <Component {...pageProps} />
     </>
