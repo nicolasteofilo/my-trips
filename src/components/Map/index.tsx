@@ -1,6 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import * as S from './styles'
 
 type place = {
@@ -45,32 +44,34 @@ const Map = ({ places }: MapProps) => {
   const router = useRouter()
 
   return (
-    <MapContainer
-      center={[0, 0]}
-      zoom={3}
-      style={{
-        height: '100%',
-        width: '100%'
-      }}
-    >
-      <CustomTileLayer />
+    <S.MapWrapper>
+      <MapContainer
+        center={[0, 0]}
+        zoom={3}
+        style={{
+          height: '100%',
+          width: '100%'
+        }}
+      >
+        <CustomTileLayer />
 
-      {places?.map(({ id, name, slug, location }) => {
-        const { latitude, longitude } = location
-        return (
-          <Marker
-            key={`place-${id}`}
-            position={[latitude, longitude]}
-            title={name}
-            eventHandlers={{
-              click: () => {
-                router.push(`/places/${slug}`)
-              }
-            }}
-          ></Marker>
-        )
-      })}
-    </MapContainer>
+        {places?.map(({ id, name, slug, location }) => {
+          const { latitude, longitude } = location
+          return (
+            <Marker
+              key={`place-${id}`}
+              position={[latitude, longitude]}
+              title={name}
+              eventHandlers={{
+                click: () => {
+                  router.push(`/places/${slug}`)
+                }
+              }}
+            ></Marker>
+          )
+        })}
+      </MapContainer>
+    </S.MapWrapper>
   )
 }
 export default Map
