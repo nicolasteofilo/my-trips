@@ -1,4 +1,10 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  MapConsumer
+} from 'react-leaflet'
 import { useRouter } from 'next/router'
 import * as S from './styles'
 
@@ -47,13 +53,31 @@ const Map = ({ places }: MapProps) => {
     <S.MapWrapper>
       <MapContainer
         center={[0, 0]}
-        zoom={3}
-        minZoom={3}
+        zoom={2}
+        minZoom={2}
+        maxBounds={[
+          [-180, 180],
+          [180, -180]
+        ]}
         style={{
           height: '100%',
           width: '100%'
         }}
       >
+        <MapConsumer>
+          {(map) => {
+            const widht =
+              window.innerWidth ||
+              document.documentElement.clientWidth ||
+              document.body.clientWidth
+
+            if (widht < 768) {
+              map.setMinZoom(2)
+            }
+
+            return null
+          }}
+        </MapConsumer>
         <CustomTileLayer />
 
         {places?.map(({ id, name, slug, location }) => {
